@@ -1,0 +1,21 @@
+<span class="view-buttons">
+  <%= link_to_function l(:button_classic_view), "submit_with_params('classic')" %> |
+  <%= link_to_function l(:button_modern_view), "submit_with_params('modern')" %>
+</span>
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'redmine_issue_query_detail', :plugin => 'redmine_issue_query_detail', :media => "screen" %>
+  <%#= javascript_include_tag 'redmine_issue_query_detail', :plugin => 'redmine_issue_query_detail', :media => "screen" %>
+<% end %>
+
+<script type="text/javascript">
+  $('.icon-checked').parent().append($('.view-buttons'));
+  function submit_with_params(view_type) {
+    if (view_type === 'modern') {
+      $("#query_form").append("<input type='hidden' name='modern_view' value='1'>")
+    }
+    else {
+      $('input[name=modern_view]').remove()
+    }
+    $("#query_form").submit();
+  }
+</script>
