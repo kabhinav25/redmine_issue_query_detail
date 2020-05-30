@@ -23,7 +23,7 @@
 <% html_title(@query.new_record? ? l(:label_issue_plural) : @query.name) %>
 
 <%= form_tag(_project_issues_path(@project), :method => :get, :id => 'query_form') do %>
-  <%= render :partial => 'redmine_issue_query_detail/query_form' %>
+  <%= render :partial => 'issue_query_detail/query_form' %>
 <% end %>
 
 <% if @query.valid? %>
@@ -31,7 +31,7 @@
     <p class="nodata"><%= l(:label_no_data) %></p>
   <% else %>
     <%= render_query_totals(@query) %>
-    <%= render :partial => 'redmine_issue_query_detail/list', :locals => {:issues => @issues, :query => @query} %>
+    <%= render :partial => 'issue_query_detail/list', :locals => {:issues => @issues, :query => @query} %>
     <span class="pagination"><%= pagination_links_full @issue_pages, @issue_count %></span>
   <% end %>
 <% end %>
@@ -43,3 +43,6 @@
 <% end %>
 
 <%= context_menu %>
+
+<%= stylesheet_link_tag 'redmine_issue_query_detail', :plugin => 'redmine_issue_query_detail', :media => "screen" %>
+<%= javascript_include_tag 'redmine_issue_query_detail', :plugin => 'redmine_issue_query_detail', :media => "screen" %>

@@ -1,4 +1,35 @@
-.view-buttons {
-  display: inline;
-  float: right;
+@media screen and (min-width: 533px) {
+
+  .view-buttons {
+    display: inline;
+    float: right;
+  }
+
+  .icon-classic {
+    border-right: 1px solid #000;
+    padding-right: 5px;
+  }
+
+  .icon-modern {
+    padding-left: 2px;
+  }
 }
+
+@media screen and (max-width: 899px) {
+
+  .view-buttons > a.icon {
+    padding-left: 8px !important;
+  }
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 1px 1px;
+  grid-template-areas: "list issue issue issue" ". . . ." ". . . .";
+}
+
+.issue-list { grid-area: list; }
+
+.issue-detail { grid-area: issue; }

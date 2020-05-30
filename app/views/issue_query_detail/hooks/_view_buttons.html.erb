@@ -1,6 +1,6 @@
 <span class="view-buttons">
-  <%= link_to_function l(:button_classic_view), "submit_with_params('classic')" %> |
-  <%= link_to_function l(:button_modern_view), "submit_with_params('modern')" %>
+  <%= link_to_function l(:button_classic_view), "submit_with_params('classic')", :class => 'icon icon-classic' %>
+  <%= link_to_function l(:button_modern_view), "submit_with_params('modern')", :class => 'icon icon-modern' %>
 </span>
 <% content_for :header_tags do %>
   <%= stylesheet_link_tag 'redmine_issue_query_detail', :plugin => 'redmine_issue_query_detail', :media => "screen" %>

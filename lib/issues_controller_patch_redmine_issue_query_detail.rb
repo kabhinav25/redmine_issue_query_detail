@@ -15,7 +15,7 @@ module IssuesControllerPatchRedmineIssueQueryDetail
           @issue_pages = IssuesController::Paginator.new @issue_count, per_page_option, params['page']
           @issues = @query.issues(:offset => @issue_pages.offset, :limit => @issue_pages.per_page)
         end
-        render "redmine_issue_query_detail/index"
+        render "issue_query_detail/index"
       end
     rescue ActiveRecord::RecordNotFound
       render_404
