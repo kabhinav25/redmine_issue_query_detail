@@ -2,7 +2,8 @@ class IssueQueryDetailController < IssuesController
 
   skip_before_action :authorize
   before_action :find_issue
-
+  before_action :find_optional_project
+  
   def issue_detail
     @journals = @issue.visible_journals_with_index
     @has_changesets = @issue.changesets.visible.preload(:repository, :user).exists?
@@ -21,4 +22,12 @@ class IssueQueryDetailController < IssuesController
     @time_entries = @issue.time_entries.visible.preload(:activity, :user)
     @relation = IssueRelation.new
   end
+
+  def find_optional_project
+    if params[:project_id].present?
+      find_project(params[:project_id])
+    end
+  end
+
+  private: find_optional_project
 end

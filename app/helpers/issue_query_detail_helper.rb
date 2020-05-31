@@ -68,4 +68,19 @@ module IssueQueryDetailHelper
     end
     content_tag('table', s, :class => 'list issues odd-even')
   end
+
+  def issue_query_detail_history_tabs
+    tabs = []
+    if @journals.present?
+      journals_without_notes = @journals.select{|value| value.notes.blank?}
+      journals_with_notes = @journals.reject{|value| value.notes.blank?}
+
+      tabs << {:name => 'history', :label => :label_history, :onclick => 'showIssueHistoryQueryDetail("history", this.href)', :partial => 'issue_query_detail/tabs/history', :locals => {:issue => @issue, :journals => @journals}}
+      tabs << {:name => 'notes', :label => :label_issue_history_notes, :onclick => 'showIssueHistoryQueryDetail("notes", this.href)'} if journals_with_notes.any?
+      tabs << {:name => 'properties', :label => :label_issue_history_properties, :onclick => 'showIssueHistoryQueryDetail("properties", this.href)'} if journals_without_notes.any?
+    end
+    tabs << {:name => 'time_entries', :label => :label_time_entry_plural, :remote => true, :onclick => "getRemoteTabQueryDetail('time_entries', '#{tab_issue_path(@issue, :name => 'time_entries')}', '#{issue_path(@issue, :tab => 'time_entries')}')"} if User.current.allowed_to?(:view_time_entries, @project) && @issue.spent_hours > 0
+    tabs << {:name => 'changesets', :label => :label_associated_revisions, :remote => true, :onclick => "getRemoteTabQueryDetail('changesets', '#{tab_issue_path(@issue, :name => 'changesets')}', '#{issue_path(@issue, :tab => 'changesets')}')"} if @has_changesets
+    tabs
+  end
 end

@@ -7,20 +7,13 @@
       <table id="selectable" class="list issues odd-even <%= query.css_classes %>">
         <thead>
           <tr>
-            <th class="checkbox hide-when-print">
-              <%= check_box_tag 'check_all', '', false, :class => 'toggle-selection',
-                :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}" %>
-            </th>
             <th><%= l(:label_issue)%></th>
-            <th class="buttons"></th>
           </tr>
         </thead>
         <tbody>
           <% issues.each do |issue|%>
             <tr id="issue-<%= issue.id %>" class="<%= cycle('odd', 'even') %> <%= issue.css_classes %>">
-              <td class="checkbox hide-when-print"><%= check_box_tag("ids[]", issue.id, false, :id => nil) %></td>
               <td class="select-issue" data-issue-id='<%= issue.id%>'><%= issue.id %></td>
-              <td class="buttons"><%= link_to_context_menu %></td>
             </tr>
             <% end %>
         </tbody>
@@ -32,18 +25,3 @@
   </div>
 </div>
 <%end %>
-  <script>
-  $( function() {
-    $("#selectable").selectable({
-      filter: $('.select-issue'),
-      selected: function( event, ui ) {
-        $.ajax({
-          url: "issue_query_detail/" + ui.selected.dataset["issueId"],
-          type: 'get',
-          dataType: 'script'
-    });
-
-      }
-    });
-  } );
-  </script>

@@ -33,3 +33,9 @@
 .issue-list { grid-area: list; }
 
 .issue-detail { grid-area: issue; }
+
+
+#selectable .ui-selected {
+  background: #507aaa;
+  color: white;
+}
