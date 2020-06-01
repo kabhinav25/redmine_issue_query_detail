@@ -32,7 +32,6 @@
   <% else %>
     <%= render_query_totals(@query) %>
     <%= render :partial => 'issue_query_detail/list', :locals => {:issues => @issues, :query => @query} %>
-    <span class="pagination"><%= pagination_links_full @issue_pages, @issue_count %></span>
   <% end %>
 <% end %>
 
