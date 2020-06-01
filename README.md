@@ -1,4 +1,4 @@
-# Redmine Issue Query Detail (BETA)
+# Redmine Issue Query Detail (Work In-progress)
 
 Redmine Plugin to show issue details on the Issue Query Page.
 
@@ -18,6 +18,6 @@ The plugin can be used directly without needing to run any migrations or providi
 The issue query page will show two links to choose the view for query result:
 
 1. classic view - this is the current view used in issue query
-2. modern view - lists all the issues from the query result. Selecting an issue will load up its details.
+2. modern view - lists all the issues from the query result. Selecting an issue will load up its details. Editing/Updating the issue is currently not supported in this view (but may work).
 
 ![](extra/screenshot.png)
